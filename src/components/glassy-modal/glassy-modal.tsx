@@ -17,7 +17,7 @@ const GlassyModal: React.FC<GlassyModalProps> = ({ onClose }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/30 backdrop-blur-sm">
-      <div className="bg-white/10 backdrop-blur-md border border-white/30 rounded-xl shadow-lg p-8 pt-5 flex flex-col gap-4 min-w-[300px]">
+      <div className="bg-white/10 border border-white/30 rounded-xl shadow-lg p-8 pt-5 flex flex-col gap-4 min-w-[300px] max-w-[450px]">
         <GlassyModalTitleClose onClose={onClose} />
         {step === "emoji" && (
           <GlassyModalEmojiStep
@@ -39,7 +39,10 @@ const GlassyModal: React.FC<GlassyModalProps> = ({ onClose }) => {
           />
         )}
         {step === "decrypted" && (
-          <GlassyModalDecryptedStep decrypted={decrypted} />
+          <GlassyModalDecryptedStep
+            decrypted={decrypted}
+            onBack={() => setStep("binary")}
+          />
         )}
       </div>
     </div>

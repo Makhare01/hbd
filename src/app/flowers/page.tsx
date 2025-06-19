@@ -25,7 +25,7 @@ const FlowersPage = () => {
         className="absolute top-0 left-1/2 -translate-x-1/2 mt-8 p-3 flex flex-col gap-5 bg-white/10 backdrop-blur-md border border-white/30 rounded-xl shadow-lg cursor-pointer"
         onClick={() => setShowModal(true)}
       >
-        <p className="text-base text-white font-bold text-center text-nowrap leading-10">
+        <p className="text-xs text-white font-bold text-center text-nowrap leading-10">
           01010011 01101101 01101001 01101100 <br />
           01100101 00100000 11110000 10011111 <br />
           10011000 10001010 00101100 00100000 <br />

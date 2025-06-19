@@ -53,7 +53,7 @@ const GlassyModalBinaryStep: React.FC<GlassyModalBinaryStepProps> = ({
           {ENCRYPTED_TEXT}
         </div>
         <button
-          className={`relative bg-blue-500 text-white font-bold py-2 px-3 rounded hover:bg-blue-600 transition flex items-center justify-center ${
+          className={`relative bg-pink-500/80 text-white font-bold py-2 px-3 rounded hover:bg-pink-500 transition flex items-center justify-center ${
             copied ? "bg-green-500" : ""
           }`}
           onClick={handleCopy}
@@ -89,18 +89,23 @@ const GlassyModalBinaryStep: React.FC<GlassyModalBinaryStepProps> = ({
       />
       {error && <div className="text-red-400 font-bold">{error}</div>}
       <button
-        className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition w-full"
+        className="bg-pink-500/80 text-white font-bold py-2 px-4 rounded hover:bg-pink-500 transition w-full"
         onClick={() => {
           try {
             const clean = binaryValue.trim();
-            if (!clean) throw new Error("Invalid binary message");
+            if (!clean)
+              throw new Error("Please enter a valid binary code to decrypt.");
             const text = binaryToText(clean);
             if (!text || text === "Invalid binary message")
-              throw new Error("Invalid binary message");
+              throw new Error("Please enter a valid binary code to decrypt.");
             setDecrypted(text);
             setStep("decrypted");
-          } catch {
-            setError("Invalid binary message");
+          } catch (e: unknown) {
+            const message =
+              typeof e === "object" && e && "message" in e
+                ? (e as { message: string }).message
+                : "Please enter a valid binary code to decrypt.";
+            setError(message);
           }
         }}
       >
