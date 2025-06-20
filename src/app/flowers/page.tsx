@@ -1,6 +1,7 @@
 "use client";
 
 import GlassyModal from "@/components/glassy-modal/glassy-modal";
+import { PageTransition } from "@/components/PageTransition";
 import { Alignment, Fit, Layout, useRive } from "@rive-app/react-canvas";
 import { useState } from "react";
 
@@ -20,7 +21,7 @@ const FlowersPage = () => {
   });
 
   return (
-    <div className="w-screen h-screen relative">
+    <PageTransition>
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 mt-8 p-3 flex flex-col gap-5 bg-white/10 backdrop-blur-md border border-white/30 rounded-xl shadow-lg cursor-pointer"
         onClick={() => setShowModal(true)}
@@ -37,7 +38,7 @@ const FlowersPage = () => {
       </div>
       {showModal && <GlassyModal onClose={() => setShowModal(false)} />}
       <RiveComponent className="w-screen h-screen" />
-    </div>
+    </PageTransition>
   );
 };
 

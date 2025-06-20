@@ -1,5 +1,6 @@
 "use client";
 
+import { PageTransition } from "@/components/PageTransition";
 import {
   Alignment,
   Fit,
@@ -44,22 +45,24 @@ const CakePage = () => {
   }, [onIsBlowingInput]);
 
   return (
-    <div className="w-full h-full">
-      <BlowDetector
-        onBlow={() => {
-          if (inputRef.current) {
-            inputRef.current.value = true;
-            setTimeout(() => {
-              if (inputRef.current) {
-                inputRef.current.value = false;
-              }
-            }, 500);
-            // Optionally reset after a delay
-          }
-        }}
-      />
-      <RiveComponent className="w-screen h-screen" />
-    </div>
+    <PageTransition>
+      <div className="w-full h-full">
+        <BlowDetector
+          onBlow={() => {
+            if (inputRef.current) {
+              inputRef.current.value = true;
+              setTimeout(() => {
+                if (inputRef.current) {
+                  inputRef.current.value = false;
+                }
+              }, 500);
+              // Optionally reset after a delay
+            }
+          }}
+        />
+        <RiveComponent className="w-screen h-screen" />
+      </div>
+    </PageTransition>
   );
 };
 

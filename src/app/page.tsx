@@ -1,6 +1,7 @@
 "use client";
 
 import { Confety } from "@/components/confetty";
+import { PageTransition } from "@/components/PageTransition";
 import {
   Alignment,
   Fit,
@@ -62,13 +63,17 @@ export default function Home() {
     };
   }, [isOverlayInput]);
 
-  return !clicked ? (
-    <RiveComponent
-      className="w-screen h-screen"
-      onClick={onClick}
-      onTouchEnd={onClick}
-    />
-  ) : (
-    <Confety />
+  return (
+    <PageTransition>
+      {!clicked ? (
+        <RiveComponent
+          className="w-screen h-screen"
+          onClick={onClick}
+          onTouchEnd={onClick}
+        />
+      ) : (
+        <Confety />
+      )}
+    </PageTransition>
   );
 }

@@ -3,6 +3,7 @@
 import { Alignment, Fit, Layout, useRive } from "@rive-app/react-canvas";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { PageTransition } from "./PageTransition";
 
 export const Confety = () => {
   const router = useRouter();
@@ -25,5 +26,9 @@ export const Confety = () => {
     }),
   });
 
-  return <RiveComponent className="w-screen h-screen" />;
+  return (
+    <PageTransition>
+      <RiveComponent className="w-screen h-screen" />
+    </PageTransition>
+  );
 };
